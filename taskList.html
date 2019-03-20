@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<!-- <link rel="shortcut icon" href="/favicon.ico" /> -->
+<title>table</title>
+<link rel="stylesheet" href="css/configList.css" />
+<link rel="stylesheet" href="css/page.css" />
+<link rel="stylesheet" href="css/zane-calendar.min.css" />
+<script type="text/javascript" src="js/jquery.min.1.7.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+
+</head>
+<body>
+    <div id="container">
+    <div class="header"></div>
+    <div class="aside">
+        <ul>
+            <li><a href="configList.html">参数配置列表</a></li>
+            <li><a href="reportLog.html">上报日志列表</a></li>
+            <li><a href="timerList.html">定时器列表</a></li>
+            <li class="active"><a href="taskList.html">任务列表</a></li>
+            <li><a href="dataSourceList.html">数据源列表</a></li>
+            <li><a href="getDataSource.html">SQL查询</a></li>
+            <li><a href="addTask.html">新增任务</a></li>
+        </ul>
+    </div>
+        <div class="main">
+        <a href="javascript:void(0);" class="button add">增加</a>
+         <input class="input-search" type='text' id="searchjobId" name="search" value="" placeholder="请输入定时器id" />
+        <input class="input-search" type='text' id="searchdataIdentify" name="search" value="" placeholder="请输入数据标识" />
+        <input class="input-search" type='text' id="searchsource" name="search" value="" placeholder="请输入数据源"/>
+        <select class="input-search" id="searchtype">
+            <option value="3" disabled selected>请输入同步方式</option>
+            <option value="0">增量</option>
+            <option value="1">全量</option>
+        </select>
+        <a href="javascript:void(0);" class="button button4 search">查询</a>
+            <table width="100%" style="table-layout:fixed;word-break:break-all;" class="imagetable">
+              <thead>
+                <tr>
+                    <th width="4%">ID</th>
+                    <th width="6%">定时器ID</th>
+                    <th width="10%">数据源</th>
+                    <th width="10%">数据标识</th>
+                    <th width="10%">列名</th>
+                    <th width="6%">同步方式</th>
+                    <th width="12%">起始标记值</th>
+                    <th width="12%">结束标记值</th>
+                    <th width="5%">间隔值</th>    
+                    <th width="8%">总同步条数</th>
+                    <th width="9%">描述</th>
+                    <th width="10%">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+            <!-- 分页 -->
+            <div id="page" class="page_div"></div>
+        </div>
+        <div class="dialog">
+            <div class="content" style="width:800px">
+                <img class="close" src="image/close.png"/>
+                <div class="form">
+                    <h3>增加</h3>
+                    <form>
+                        <div class="form-con idShow">
+                            <label>ID:</label><input type="text" name="id" value="" class="addDisabled"/>
+                        </div>
+                        <div class="form-con">
+                            <label>定时器ID:</label><input type="text" name="jobId" value="" class="addDisabled"/>
+                        </div>
+                        <div class="form-con" style='width:690px;'>
+                            <label class="des">内容:</label><textarea rows="4" cols="auto" style="width:565px" value="" class="contentValue"></textarea>
+                        </div>
+                        <div class="form-con" style='width:690px;'>
+                            <label class="des">内容2:</label><textarea rows="4" cols="auto" style="width:565px" value="" class="content2Value"></textarea>
+                        </div>
+                        <div class="form-con" style='width:690px;'>
+                            <label class="des">内容3:</label><textarea rows="4" cols="auto" style="width:565px" value="" class="content3Value"></textarea>
+                        </div>
+                        <div class="form-con" style='width:690px;'>
+                            <label>数据源:</label>
+                            <select class="source common" style="width:565px">
+                            <option value="">请选择类型</option>
+                            </select>
+                            <!-- <input type="text" name="source" value=""/> -->
+                        </div>
+                        <div class="form-con">
+                            <label>数据标识:</label><input type="text" name="dataIdentify" value=""/>
+                        </div>
+                        <div class="form-con">
+                            <label>同步方式:</label>
+                            <select class="type">
+                                <option value="0">增量</option>
+                                <option value="1">全量</option>
+                            </select>
+                        </div>
+                        <div class="form-con">
+                            <label>起始标记值:</label>
+                            <input type="text" id="startValue" name="startValue" value=""/>
+                        </div>
+                        <div class="form-con">
+                            <label>结束标记值:</label><input id="endValue" type="text" name="endValue" value=""/>
+                        </div>
+                        <div class="form-con">
+                            <label>间隔值:</label><input type="text" name="gapValue" value=""/>
+                        </div>
+                        <div class="form-con">
+                            <label>列名:</label><input type="text" name="columnName" value=""/>
+                        </div>
+                        <div class="form-con">
+                            <label>描述:</label><input type="text" name="description" value=""/>
+                        </div>
+                        <div class="form-con idShow">
+                            <label>总同步条数:</label><input type="text" name="totalCount" value=""/>
+                        </div>
+
+                        <div class="form-con">
+                            <a href="javascript:void(0);" class="button submit">提交</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="el-dialog_delete">
+            <div class="el-dialog__wrapper" style="z-index: 2024;">
+                <div role="dialog" aria-modal="true" aria-label="提示" class="el-dialog" style="margin-top: 15vh; width: 30%;">
+                    <div class="el-dialog__header">
+                        <span class="el-dialog__title">提示</span>
+                    </div>
+                    <div class="el-dialog__body">
+                        <span>你确定要删除该条数据吗？</span>
+                    </div>
+                    <div class="el-dialog__footer">
+                        <span class="dialog-footer">
+                            <button type="button" class="cancel el-button el-button--default">
+                                <span>取 消</span>
+                            </button>
+                            <button type="button" class="sure el-button el-button--primary">
+                                <span>确 定</span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="js/taskList.js"></script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/paging.js"></script>
+<script type="text/javascript" src="js/zane-calendar.min.js"></script>
+</html>

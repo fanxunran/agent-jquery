@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<!-- <link rel="shortcut icon" href="/favicon.ico" /> -->
+<title>table</title>
+<link rel="stylesheet" href="css/configList.css" />
+<link rel="stylesheet" href="css/page.css" />
+<link rel="stylesheet" href="css/zane-calendar.min.css" />
+<script type="text/javascript" src="js/jquery.min.1.7.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+
+</head>
+<body>
+<div id="container">
+    <div class="header"></div>
+    <div class="aside">
+        <ul>
+            <li><a href="configList.html">参数配置列表</a></li>
+            <li ><a href="reportLog.html">上报日志列表</a></li>
+            <li><a href="timerList.html">定时器列表</a></li>
+            <li><a href="taskList.html">任务列表</a></li>
+            <li><a href="dataSourceList.html">数据源列表</a></li>
+            <li><a href="getDataSource.html">SQL查询</a></li>
+            <li class="active"><a href="addTask.html">新增任务</a></li>
+        </ul>
+    </div>
+    <div class="main pdr220">
+        <div class="step1">
+            <div class="content wid960">
+                <div class="form bordline">
+                    <h3>数据库</h3>
+                    <hr/>
+                    <div class="database">
+                        <div class="form-con wid25">
+                            <img class="img-src" data="mysql" src="./image/sql.jpg">
+                        </div>
+                        <div class="form-con wid25">
+                            <img class="img-src" data="sqlserver" src="./image/sqlserver.jpg">
+                        </div>
+                        <div class="form-con wid25">
+                            <img class="img-src" data="oracle" src="./image/oracle.jpg">
+                        </div>
+                    </div>
+                    <h3>数据库</h3>
+                    <hr/>
+                    <div class="database">
+                        <div class="form-con wid25">
+                            <img class="img-src" data="api" src="./image/api.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="step2 classData">
+            <div class="content wid960">
+                <div class="form bordline">
+                    <h3>任务配置</h3>
+                    <div>
+                        <!-- sourceId -->
+                        <div class="form-con wid100">
+                            <label>数据库名:</label>
+                            <select class="set dataBaseName">
+                            <option value="0" disabled selected>请选择</option>
+                            </select>
+                        </div>
+                        <!-- tableName -->
+                        <div class="form-con wid100" style="position:relative;">
+                            <label for="tName">表名:</label>
+                            <input id="tName" class="dbtName" placeholder="请输入选择" />
+                            <ul id="search_text">
+                            </ul>
+                        </div>
+                        <!-- jobName -->
+                        <div class="form-con wid100">
+                            <label>任务名称:</label>
+                            <input class="task" type="text" name="task" value="" style="width:60%">
+                        </div>
+                        <!-- ruleId -->
+                        <div class="form-con wid100">
+                            <label>同步规则:</label>
+                             <select class="set dataResoucerule" placeholder="请选择">
+                            </select>
+                            <p class="dataResouceTips"></p>
+                        </div>
+                        <!-- columnName -->
+                        <div class="form-con wid100 labelblock" > 
+                            <label>同步字段：</label>
+                            <div class="columnName" style="width:80%;display:inline-block;">
+                            </div>
+                        </div>
+                        <!-- columnType -->
+                        <div class="form-con wid100 addInput">
+                            <label>字段类型：</label>
+                            <select class="columnType">
+                                <option value="0" disabled selected>请选择</option>
+                                <option value="datetime">datetime</option>
+                                <option value="timetamp">timetamp</option>
+                            </select>
+                        </div>
+                        <!-- startTime -->
+                        <div class="form-con wid100 ctime">
+                            <label>起始时间：</label>
+                            <input type='text' id="ctime" name="startTime" style= value="" placeholder="请输入时间" />
+                        </div>
+                        <div class="form-con wid100">
+                            <label>周期单元:</label>
+                            <span>每</span>
+                            <!-- day -->
+                            <div class="div_day">
+                                <input type="text" class="cycle" name="day" value=1 onkeyup = "value=value.replace(/[^\d]/g,'')">
+                                <span class="increase" onclick="increase(this)"></span>
+
+                                <span class="reduce" onclick="reduce(this)"></span>
+                            </div>
+                            <!-- cronUnit -->
+                            <select class="day cycle">
+                                <option value="day">天</option>
+                                <option value="hour">小时</option>
+                                <option value="minute">分钟</option>
+                                <option value="second">秒</option>
+                            </select>
+                            <select class="child hour cycle"></select>
+                            <span class="con">时</span>
+                            <select class="child minute cycle"></select>
+                            <span class="con">分</span>
+                            <select class="child second cycle"></select>
+                            <span class="con">秒</span>
+                        </div>
+                        <div class="form-con wid100">
+                            <a href="javascript:void(0);" class="button submit">确定</a>
+                            <a href="javascript:void(0);" class="button cancel">取消</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="step3 classApi">
+            <div class="content wid960">
+                <div class="form bordline">
+                    <h3>任务配置</h3>
+                    <div>
+                        <!-- jobName -->
+                        <div class="form-con wid100">
+                            <label>task:</label>
+                            <input class="task" type="text" name="task" value="">
+                        </div>
+                        <!-- ruleId -->
+                        <div class="form-con wid100">
+                            <label>同步规则:</label>
+                             <select class="set dataResoucerule" placeholder="请选择">
+                            </select>
+                            <p class="dataResouceTips"></p>
+                        </div>
+                        <!-- url -->
+                        <div class="form-con wid100 apiAddress">
+                            <label>api地址:</label>
+                            <textarea class="url" rows="3" cols="auto"></textarea>
+                            <!-- <input class="url" type="text" name="url" value=""> -->
+                        </div>
+                        <!-- apiParam -->
+                        <div class="form-con wid100 apiInputType">
+                            <label>参数值：</label>
+                            <textarea class="apiparam" rows="3" cols="auto"></textarea>
+                            <!-- <input class="apiparam" type="text" name="apiparam" value=""> -->
+                        </div>
+                        <!-- startTime -->
+                        <div class="form-con wid100 apiInputTime">
+                            <label>起始时间：</label>
+                            <input type='text' id="apictime" name="startTime" style= value="" placeholder="请输入时间" />
+                        </div>
+                        <div class="form-con wid100">
+                            <label>周期单元:</label>
+                            <span>每</span>
+                            <!-- <input type="text" class="cycle" name="day"> -->
+                            <div class="div_day">
+                                <input type="text" class="cycle" name="day" value=1 onkeyup = "value=value.replace(/[^\d]/g,'')">
+                                <span class="increase" onclick="increase(this)"></span>
+
+                                <span class="reduce" onclick="reduce(this)"></span>
+                            </div>
+                            <select class="day cycle">
+                                <option value="day">天</option>
+                                <option value="hour">小时</option>
+                                <option value="minute">分钟</option>
+                                <option value="second">秒</option>
+                            </select>
+                            <select class="child hour cycle "></select>
+                            <span class="con">时</span>
+                            <select class="child minute cycle"></select>
+                            <span class="con">分</span>
+                            <select class="child second cycle"></select>
+                            <span class="con">秒</span>
+                        </div>
+                        <div class="form-con wid100">
+                            <a href="javascript:void(0);" target="_blank" class="button submit">确定</a>
+                            <a href="javascript:void(0);" class="button cancel">取消</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript" src="js/addTask.js"></script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/paging.js"></script>
+<script type="text/javascript" src="js/zane-calendar.min.js"></script>
+</html>

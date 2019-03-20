@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv = "X-UA-Compatible" content = "IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<!-- <link rel="shortcut icon" href="/favicon.ico" /> -->
+<title>table</title>
+<link rel="stylesheet" href="css/configList.css" />
+<link rel="stylesheet" href="css/page.css" />
+<script type="text/javascript" src="js/jquery.min.1.7.js"></script>
+<script type="text/javascript" src="js/common.js"></script>
+
+</head>
+<body>
+    <div id="container">
+    <div class="header"></div>
+    <div class="aside">
+    <p></p>
+        <ul>
+            <li><a href="configList.html">参数配置列表</a></li>
+            <li><a href="reportLog.html">上报日志列表</a></li>
+            <li class="active"><a href="timerList.html">定时器列表</a></li>
+            <li><a href="taskList.html">任务列表</a></li>
+            <li><a href="dataSourceList.html">数据源列表</a></li>
+            <li><a href="getDataSource.html">SQL查询</a></li>
+            <li><a href="addTask.html">新增任务</a></li>
+        </ul>
+    </div>
+        <div class="main">
+        <a href="javascript:void(0);" class="button add">增加</a>
+        <input class="input-search" type='text' id="searchjobName" name="search" value="" placeholder="请输入名称" />
+        <input class="input-search" type='text' id="searchclassPath" name="search" value="" placeholder="请输入类路径" />
+        <select class="input-search" id="searchstatus" class="status" >
+            <option value="" disabled selected>请输入状态</option>
+            <option value="0">初始化历史数据</option>
+            <option value="1">正常</option>
+            <option value="2">下架</option>
+        </select>
+        <a href="javascript:void(0);" class="button button4 search">查询</a>
+            <table class="imagetable" width="100%" style="table-layout:fixed;word-break:break-all;">
+              <thead>
+                <tr>
+                    <th width="5%">id</th>
+                    <th width="15%">名称</th>
+                    <th width="20%">组名称</th>
+                    <th width="25%">类路径</th>
+                    <th width="8%">cron表达式</th>
+                    <th width="5%">重启</th>
+                    <th width="5%">并行</th>
+                    <th width="5%">状态</th>
+                    <th width="12%">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+            <!-- 分页 -->
+            <div id="page" class="page_div"></div>
+        </div>
+        <div class="dialog">
+            <div class="content" style="width:800px">
+                <img class="close" src="image/close.png"/>
+                <div class="form">
+                    <h3>增加</h3>
+                    <form>
+                        <div class="form-con idShow">
+                            <label>id:</label><input type="text" name="id" value="" class="addDisabled"/>
+                        </div>
+                        <div class="form-con">
+                            <label>名称:</label><input type="text" name="jobName" value=""/>
+                        </div>
+                        <div class="form-con">
+                            <label>组名称:</label><input type="text" name="jobGroupName" value=""/>
+                        </div>
+                        <div class="form-con" style="width:690px;">
+                            <label class="des">类路径:</label><textarea rows="6" cols="auto" value="" class="contentValue" style="width:565px"></textarea>
+                        </div>
+                        <div class="form-con">
+                            <label>cron表达式:</label><input type="text" name="cron" value=""/>
+                        </div>
+                        <div class="form-con">
+                            <label>重启:</label>
+                            <select class="restart">
+                                <option value="0">不重启</option>
+                                <option value="1">等待重启</option>
+                            </select>
+                        </div>
+                        <div class="form-con">
+                            <label>并行:</label>
+                            <select class="concurrent">
+                                <option value="0">串行</option>
+                                <option value="1">并行</option>
+                            </select>
+                        </div>
+                        <div class="form-con">
+                            <label>状态:</label>
+                            <select class="status">
+                                <option value="0">初始化历史数据</option>
+                                <option value="1">正常</option>
+                                <option value="2">下架</option>
+                            </select>
+                        </div>
+
+                        <div class="form-con">
+                            <a href="javascript:void(0);" class="button submit">提交</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="el-dialog_delete">
+            <div class="el-dialog__wrapper" style="z-index: 2024;">
+                <div role="dialog" aria-modal="true" aria-label="提示" class="el-dialog" style="margin-top: 15vh; width: 30%;">
+                    <div class="el-dialog__header">
+                        <span class="el-dialog__title">提示</span>
+                    </div>
+                    <div class="el-dialog__body">
+                        <span>你确定要删除该条数据吗？</span>
+                    </div>
+                    <div class="el-dialog__footer">
+                        <span class="dialog-footer">
+                            <button type="button" class="cancel el-button el-button--default">
+                                <span>取 消</span>
+                            </button>
+                            <button type="button" class="sure el-button el-button--primary">
+                                <span>确 定</span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="js/timerList.js"></script>
+<script src="http://www.jq22.com/jquery/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="js/paging.js"></script>
+</html>
